@@ -255,7 +255,7 @@
     #skills { background: #0a0a0f; }
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.5rem;
     }
     .skill-category {
@@ -284,15 +284,28 @@
       font-size: 1.2rem;
     }
     .skill-category h3 { font-size: 1rem; font-weight: 600; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .skill-tag {
-      padding: 0.35rem 0.75rem;
-      background: rgba(99,102,241,0.08);
-      border: 1px solid rgba(99,102,241,0.15);
-      border-radius: 6px;
-      font-size: 0.8rem;
-      color: #a5b4fc;
-      font-weight: 500;
+    .skill-item { margin-bottom: 1rem; }
+    .skill-item:last-child { margin-bottom: 0; }
+    .skill-item-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+    .skill-item-name { font-size: 0.88rem; font-weight: 500; color: #cbd5e1; }
+    .skill-item-percent { font-size: 0.82rem; color: #6366f1; font-weight: 600; }
+    .skill-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(148,163,184,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(135deg, #6366f1, #a78bfa);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 1.2s ease;
     }
 
     /* ===== EXPERIENCE ===== */
@@ -355,7 +368,7 @@
     #projects { background: #0a0a0f; }
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 1.75rem;
     }
     .project-card {
@@ -383,6 +396,16 @@
       color: #6366f1;
       margin-bottom: 1rem;
     }
+    .project-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #6366f1;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.35rem;
+      margin-top: 1rem;
+    }
+    .project-label:first-of-type { margin-top: 0; }
     .project-card p {
       color: #94a3b8;
       font-size: 0.9rem;
@@ -403,8 +426,53 @@
       color: #c4b5fd;
     }
 
+    /* ===== HACKATHONS ===== */
+    #hackathons { background: #0d0d14; }
+    .hackathons-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hackathon-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(148,163,184,0.08);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: border-color 0.3s;
+    }
+    .hackathon-card:hover {
+      border-color: rgba(99,102,241,0.3);
+    }
+    .hackathon-card .hackathon-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .hackathon-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .hackathon-card .hackathon-role {
+      font-size: 0.85rem;
+      color: #6366f1;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    .hackathon-card .hackathon-date {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-bottom: 0.75rem;
+    }
+    .hackathon-card p {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
     /* ===== ACHIEVEMENTS ===== */
-    #achievements { background: #0d0d14; }
+    #achievements { background: #0a0a0f; }
     .achievement-card {
       background: rgba(255,255,255,0.02);
       border: 1px solid rgba(148,163,184,0.08);
@@ -434,7 +502,7 @@
     }
 
     /* ===== CERTIFICATIONS ===== */
-    #certifications { background: #0a0a0f; }
+    #certifications { background: #0d0d14; }
     .certs-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -468,7 +536,7 @@
     }
 
     /* ===== CONTACT ===== */
-    #contact { background: #0d0d14; }
+    #contact { background: #0a0a0f; }
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -594,7 +662,9 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#hackathons">Hackathons</a></li>
       <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#certifications">Certifications</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
@@ -700,16 +770,54 @@
             <div class="skill-icon">🤖</div>
             <h3>AI & Agentic Frameworks</h3>
           </div>
-          <div class="skill-tags">
-            <span class="skill-tag">Generative AI</span>
-            <span class="skill-tag">Agentic AI</span>
-            <span class="skill-tag">RAG</span>
-            <span class="skill-tag">OpenAI Agent SDK</span>
-            <span class="skill-tag">CrewAI</span>
-            <span class="skill-tag">AutoGen</span>
-            <span class="skill-tag">LangChain</span>
-            <span class="skill-tag">Hugging Face</span>
-            <span class="skill-tag">Transformers</span>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">Generative AI & Agentic AI</span>
+              <span class="skill-item-percent">95%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="95%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">RAG Systems</span>
+              <span class="skill-item-percent">90%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="90%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">OpenAI Agent SDK</span>
+              <span class="skill-item-percent">88%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="88%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">LangChain</span>
+              <span class="skill-item-percent">92%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="92%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">CrewAI</span>
+              <span class="skill-item-percent">88%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="88%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">AutoGen</span>
+              <span class="skill-item-percent">85%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="85%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">Hugging Face & Transformers</span>
+              <span class="skill-item-percent">87%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="87%"></div></div>
           </div>
         </div>
 
@@ -718,14 +826,40 @@
             <div class="skill-icon">🧠</div>
             <h3>Machine Learning & NLP</h3>
           </div>
-          <div class="skill-tags">
-            <span class="skill-tag">PyTorch</span>
-            <span class="skill-tag">TensorFlow</span>
-            <span class="skill-tag">Keras</span>
-            <span class="skill-tag">OpenCV</span>
-            <span class="skill-tag">Model Training</span>
-            <span class="skill-tag">LLM Optimization</span>
-            <span class="skill-tag">NLP</span>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">Python (NumPy, Pandas, Scikit-learn)</span>
+              <span class="skill-item-percent">93%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="93%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">PyTorch</span>
+              <span class="skill-item-percent">88%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="88%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">TensorFlow & Keras</span>
+              <span class="skill-item-percent">85%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="85%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">OpenCV</span>
+              <span class="skill-item-percent">80%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="80%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">LLM Optimization & NLP</span>
+              <span class="skill-item-percent">90%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="90%"></div></div>
           </div>
         </div>
 
@@ -734,15 +868,33 @@
             <div class="skill-icon">💻</div>
             <h3>Programming & Backend</h3>
           </div>
-          <div class="skill-tags">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">NumPy</span>
-            <span class="skill-tag">Pandas</span>
-            <span class="skill-tag">Scikit-learn</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">FastAPI</span>
-            <span class="skill-tag">RESTful APIs</span>
-            <span class="skill-tag">GraphQL</span>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">JavaScript</span>
+              <span class="skill-item-percent">78%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="78%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">FastAPI</span>
+              <span class="skill-item-percent">88%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="88%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">RESTful APIs & GraphQL</span>
+              <span class="skill-item-percent">82%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="82%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">Prompt Engineering</span>
+              <span class="skill-item-percent">92%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="92%"></div></div>
           </div>
         </div>
 
@@ -751,11 +903,33 @@
             <div class="skill-icon">🗄️</div>
             <h3>Databases & Vector Tools</h3>
           </div>
-          <div class="skill-tags">
-            <span class="skill-tag">FAISS</span>
-            <span class="skill-tag">Pinecone</span>
-            <span class="skill-tag">PostgreSQL</span>
-            <span class="skill-tag">MongoDB</span>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">FAISS</span>
+              <span class="skill-item-percent">85%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="85%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">Pinecone</span>
+              <span class="skill-item-percent">82%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="82%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">PostgreSQL</span>
+              <span class="skill-item-percent">78%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="78%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">MongoDB</span>
+              <span class="skill-item-percent">75%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="75%"></div></div>
           </div>
         </div>
 
@@ -764,13 +938,33 @@
             <div class="skill-icon">🔧</div>
             <h3>Tools & DevOps</h3>
           </div>
-          <div class="skill-tags">
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Kubernetes</span>
-            <span class="skill-tag">Git/GitHub</span>
-            <span class="skill-tag">Jupyter Notebook</span>
-            <span class="skill-tag">n8n</span>
-            <span class="skill-tag">Claude Code</span>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">Docker</span>
+              <span class="skill-item-percent">80%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="80%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">Kubernetes</span>
+              <span class="skill-item-percent">75%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="75%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">Git / GitHub</span>
+              <span class="skill-item-percent">88%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="88%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">n8n (Workflow Automation)</span>
+              <span class="skill-item-percent">82%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="82%"></div></div>
           </div>
         </div>
 
@@ -779,11 +973,33 @@
             <div class="skill-icon">🌐</div>
             <h3>Languages</h3>
           </div>
-          <div class="skill-tags">
-            <span class="skill-tag">English (Native)</span>
-            <span class="skill-tag">Urdu (Native)</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">JavaScript</span>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">English</span>
+              <span class="skill-item-percent">Native</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="98%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">Urdu</span>
+              <span class="skill-item-percent">Native</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="98%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">Python</span>
+              <span class="skill-item-percent">93%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="93%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">JavaScript</span>
+              <span class="skill-item-percent">78%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="78%"></div></div>
           </div>
         </div>
 
@@ -856,11 +1072,10 @@
           <div class="project-icon">🎙️</div>
           <h3>Autonomous AI Customer Support Team</h3>
           <div class="project-period">2025</div>
-          <p>
-            Developed autonomous AI agents for customer query handling and automated conversation management.
-            Implemented NLP techniques for intent detection and sentiment analysis.
-            Collaborated with AI Engineers, Developers, and Support Teams for continuous improvement.
-          </p>
+          <div class="project-label">Problem</div>
+          <p>Customer support teams struggle with high query volumes, inconsistent responses, and delayed ticket resolution, leading to poor customer experience.</p>
+          <div class="project-label">Solution</div>
+          <p>Developed autonomous AI agents that handle customer queries end-to-end using NLP for intent detection and sentiment analysis. Enabled automated conversation management and continuous learning with AI teams.</p>
           <div class="project-tags">
             <span class="project-tag">NLP</span>
             <span class="project-tag">AI Agents</span>
@@ -873,11 +1088,10 @@
           <div class="project-icon">🗣️</div>
           <h3>Real-time Voice-to-Voice Chatbot</h3>
           <div class="project-period">2024</div>
-          <p>
-            Developed an AI-powered real-time voice-to-voice chatbot that enables natural human-like conversations.
-            System converts voice to text via speech recognition, processes queries using an LLM, and generates
-            real-time voice responses using TTS. Supports continuous dialogue, context retention, and multilingual communication.
-          </p>
+          <div class="project-label">Problem</div>
+          <p>Existing chatbot systems lack natural conversation flow, introducing latency and losing context, making them unsuitable for real-time voice interaction and multilingual use cases.</p>
+          <div class="project-label">Solution</div>
+          <p>Built an AI-powered voice-to-voice chatbot using speech recognition to convert voice to text, LLM for processing, and TTS synthesis for responses. Supports continuous dialogue, context retention, and low-latency multilingual communication.</p>
           <div class="project-tags">
             <span class="project-tag">Speech Recognition</span>
             <span class="project-tag">LLM</span>
@@ -890,10 +1104,10 @@
           <div class="project-icon">📝</div>
           <h3>Gen AI Content Optimization System</h3>
           <div class="project-period">2026</div>
-          <p>
-            Building a Generative AI Content Optimization System with integrated quality checks, ethics validation,
-            plagiarism detection, and analytics. Designed to enhance content quality while maintaining ethical standards.
-          </p>
+          <div class="project-label">Problem</div>
+          <p>Content teams face challenges maintaining quality, ethics, and originality at scale — manual checks are slow and plagiarism goes undetected.</p>
+          <div class="project-label">Solution</div>
+          <p>Building a Generative AI Content Optimization System with integrated quality checks, ethics validation, plagiarism detection, and real-time analytics to enhance content quality while maintaining ethical standards.</p>
           <div class="project-tags">
             <span class="project-tag">Generative AI</span>
             <span class="project-tag">Quality Checks</span>
@@ -905,11 +1119,10 @@
           <div class="project-icon">🔗</div>
           <h3>AI Agent Workflow Automation (Upwork)</h3>
           <div class="project-period">2024 – Present</div>
-          <p>
-            Developed multi-agent systems for task execution, planning, and autonomous operations, reducing manual
-            workflow effort by 40%. Built AI workflows for ticket classification, prioritization, and escalation
-            management. Tested 20+ end-to-end API workflows to improve accuracy, clarity, and data-driven insights by 35%.
-          </p>
+          <div class="project-label">Problem</div>
+          <p>Manual workflows cause delays, human error, and inconsistent task prioritization. Businesses need intelligent automation for ticket management and operational efficiency.</p>
+          <div class="project-label">Solution</div>
+          <p>Developed multi-agent systems using CrewAI and AutoGen for autonomous task execution, planning, and operations — reducing manual effort by 40%. Built AI workflows for ticket classification, prioritization, and escalation with 35% improvement in data-driven insights.</p>
           <div class="project-tags">
             <span class="project-tag">CrewAI</span>
             <span class="project-tag">AutoGen</span>
@@ -922,11 +1135,10 @@
           <div class="project-icon">💬</div>
           <h3>LLM-Powered Chatbot Applications</h3>
           <div class="project-period">2024</div>
-          <p>
-            Built AI-powered chatbots and recommendation systems with intelligent response generation and contextual
-            customer interaction. Integrated Gen AI models for improved response accuracy.
-            Analyzed large datasets (50K+ records) to identify patterns, trends, and business insights.
-          </p>
+          <div class="project-label">Problem</div>
+          <p>Businesses need intelligent, context-aware chatbots that provide accurate and personalized customer interactions — but generic solutions fail to understand domain-specific queries.</p>
+          <div class="project-label">Solution</div>
+          <p>Built LLM-powered chatbots and recommendation systems with intelligent response generation. Integrated Gen AI models for contextual customer interaction. Analyzed 50K+ record datasets to identify patterns and business insights.</p>
           <div class="project-tags">
             <span class="project-tag">LLM</span>
             <span class="project-tag">RAG</span>
@@ -939,25 +1151,43 @@
     </div>
   </section>
 
+  <!-- HACKATHONS -->
+  <section id="hackathons">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Hackathons</div>
+        <h2 class="section-title">Competitions & Events</h2>
+        <p class="section-subtitle">Where I've led teams and competed globally</p>
+      </div>
+      <div class="hackathons-list">
+
+        <div class="hackathon-card">
+          <div class="hackathon-icon">🏆</div>
+          <h3>International AI Hackathon – Polyglot Meeting Whisper Project</h3>
+          <div class="hackathon-role">Team Lead</div>
+          <div class="hackathon-date">June 2025</div>
+          <p>Spearheaded the <strong>Polyglot Meeting Whisper Project</strong>, monitoring and guiding 20+ international participants. Ranked <strong>Top 10 globally</strong>. Delivered a multilingual AI-powered meeting transcription and summarization solution that cut post-meeting turnaround time by 25%.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ACHIEVEMENTS -->
   <section id="achievements">
     <div class="container">
       <div class="section-header">
         <div class="section-tag">Achievements</div>
-        <h2 class="section-title">Hackathons & Awards</h2>
-        <p class="section-subtitle">Recognitions and competitive achievements</p>
+        <h2 class="section-title">Key Highlights</h2>
+        <p class="section-subtitle">Milestones and recognitions</p>
       </div>
       <div style="display:flex; flex-direction:column; gap:1.5rem; align-items:center;">
 
         <div class="achievement-card">
-          <div class="achievement-icon">🏆</div>
-          <h3>Lead International AI Hackathon – Polyglot Meeting Whisper Project</h3>
-          <div class="achievement-date">June 2025</div>
-          <p>
-            Spearheaded the <strong>Polyglot Meeting Whisper Project</strong>, monitoring and guiding 20+ international
-            participants. Ranked <strong>Top 10 globally</strong> out of all competing teams. Delivered a multilingual AI-powered
-            meeting transcription and summarization solution that cut post-meeting turnaround time by 25%.
-          </p>
+          <div class="achievement-icon">🎓</div>
+          <h3>Ranked Top 5% — UET Peshawar Batch</h3>
+          <div class="achievement-date">2022</div>
+          <p>Graduated with a <strong>B.S. in Industrial & Systems Engineering</strong> from the University of Engineering & Technology (UET) Peshawar, ranking among the <strong>top 5%</strong> of the batch.</p>
         </div>
 
       </div>
@@ -1035,9 +1265,9 @@
               <div class="c-icon">📧</div>
               mfawaduetpeshawar@gmail.com
             </a>
-            <a href="tel:+9203015582538" class="contact-link">
+            <a href="tel:+923015582538" class="contact-link">
               <div class="c-icon">📱</div>
-              +92 0301 5582538
+              +92 301 5582538
             </a>
             <a href="https://www.linkedin.com/in/muhammadfawadaziz/" target="_blank" class="contact-link">
               <div class="c-icon">💼</div>
@@ -1096,6 +1326,20 @@
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => navLinks.classList.remove('active'));
     });
+
+    // Animate skill bars on scroll
+    const skillBars = document.querySelectorAll('.skill-bar-fill');
+    const animateBars = () => {
+      skillBars.forEach(bar => {
+        const rect = bar.getBoundingClientRect();
+        if (rect.top < window.innerHeight && !bar.classList.contains('animated')) {
+          bar.classList.add('animated');
+          bar.style.width = bar.getAttribute('data-width');
+        }
+      });
+    };
+    window.addEventListener('scroll', animateBars);
+    window.addEventListener('load', animateBars);
 
     // Contact form handler
     function handleSubmit(e) {
